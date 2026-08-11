@@ -1,0 +1,9 @@
+Result value counts (1 = legitimate/benign, -1 = phishing/malicious):
+Result
+ 1    6157
+-1    4898
+
+Proportions:
+Result
+ 1    55.69
+-1    44.31%

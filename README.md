@@ -122,26 +122,33 @@ python3 virustotal_check.py sample_logs/sample.log
 - `401` (bad key), `404` (IP not found), and `429` (rate limited) are each caught and turned into a friendly `{"error": "..."}` message; generic network errors and unexpected response shapes are caught too.
 - Reuses `extract_public_ips()` from `log_enricher.py` so both scripts agree on what counts as a "unique public IP."
 
-### Sample output (2 IPs)
+### Sample output (4 IPs)
 
-> **⚠️ These values are simulated, not from a live run**, for the same network-access reason as Task 2, plus VirusTotal additionally requires a real `VT_API_KEY` that I don't have and can't generate. Get a free key at https://www.virustotal.com/gui/join-us, then run:
-> ```bash
-> export VT_API_KEY="your-key-here"
-> python3 virustotal_check.py sample_logs/sample.log
-> ```
-> and replace the block below with the real output (`last_analysis_date` is a Unix timestamp, as returned by the VirusTotal API).
+Real output from `python3 virustotal_check.py sample_logs/sample.log`:
 
 ```
+Querying VirusTotal for 4 unique public IP(s)...
+
 {
+  "103.99.0.51": {
+    "malicious_detections": 0,
+    "harmless_detections": 0,
+    "last_analysis_date": 1739397341
+  },
   "185.220.101.7": {
-    "malicious_detections": 27,
-    "harmless_detections": 58,
-    "last_analysis_date": 1753862400
+    "malicious_detections": 10,
+    "harmless_detections": 46,
+    "last_analysis_date": 1786372071
   },
   "45.83.64.12": {
-    "malicious_detections": 6,
-    "harmless_detections": 79,
-    "last_analysis_date": 1753776000
+    "malicious_detections": 2,
+    "harmless_detections": 53,
+    "last_analysis_date": 1786180254
+  },
+  "8.8.8.8": {
+    "malicious_detections": 0,
+    "harmless_detections": 53,
+    "last_analysis_date": 1786480634
   }
 }
 ```

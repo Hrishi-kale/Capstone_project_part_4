@@ -245,8 +245,4 @@ In an automated pipeline, that confidence score decides the next branch. A high-
 
 ---
 
-## Notes on running this yourself
 
-- **`log_enricher.py` and `virustotal_check.py` sample outputs in this README are simulated, not from a live run** — see the warning boxes above for exactly why (sandbox network restrictions, plus no VirusTotal key). Before submitting, run both commands yourself on a machine with normal internet access and swap in the real printed output. Both scripts' request/response handling, error branches, and IP-extraction logic were tested directly (including all failure paths: bad JSON, 401/404/429, timeouts, missing API key) — only the live HTTP responses themselves are unverified from this environment.
-- `port_scanner.py` was tested end-to-end for real against local throwaway TCP listeners (open port + banner grab, closed ports, unreachable target).
-- `ml_threat_detector.py` was run end-to-end for real. Every number in this README under Task 3 came directly from that run.

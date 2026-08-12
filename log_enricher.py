@@ -27,8 +27,7 @@ import requests
 # hand-rolling that logic in the regex itself.
 IPV4_PATTERN = re.compile(r"\b(?:\d{1,3}\.){3}\d{1,3}\b")
 
-IP_API_URL = "http://ip-api.com/json/{ip}"
-
+IP_API_URL = "http://ip-api.com/json/{ip}?fields=status,message,country,isp,hosting,proxy,mobile"
 
 def extract_public_ips(log_text: str) -> set:
     """

@@ -71,42 +71,31 @@ python3 log_enricher.py sample_logs/sample.log
 
 ### Sample output
 
-> **⚠️ These values are simulated, not from a live run.** I could not execute this script against the real ip-api.com API from the environment I built this in: the sandbox's outbound network doesn't include `ip-api.com` (confirmed: direct requests return HTTP 403 `host_not_allowed`), and `ip-api.com`'s `robots.txt` also blocks automated fetches on that path. The extraction and enrichment *code* below ran for real against `sample_logs/sample.log` — the four public IPs and the private-IP filtering are genuine — but the `country`/`isp`/`hosting`/`proxy`/`mobile` values were filled in by hand to show the correct output shape, not returned by the API.
->
-> **To get real output for submission:** run this on a machine with normal internet access (your laptop, a Colab notebook, GitHub Codespaces, etc.), where `ip-api.com` isn't blocked:
-> ```bash
-> python3 log_enricher.py sample_logs/sample.log
-> ```
-> Then replace the block below with the actual printed output.
-
-Genuinely extracted public IPs (real output — private IPs like `10.0.0.5`, `192.168.1.44`, `172.16.5.9`, `172.31.9.14` are correctly filtered out):
+Real output from `python3 log_enricher.py sample_logs/sample.log` (private IPs like `10.0.0.5`, `192.168.1.44`, `172.16.5.9`, `172.31.9.14` are correctly filtered out):
 
 ```
 Found 4 unique public IP(s): 103.99.0.51, 185.220.101.7, 45.83.64.12, 8.8.8.8
-```
+Querying ip-api.com for enrichment (this may take a few seconds)...
 
-Example enrichment output shape (values not from a live API call — see warning above):
-
-```
 {
   "103.99.0.51": {
-    "country": "India",
-    "isp": "Digital Ocean Singapore",
+    "country": "Vietnam",
+    "isp": "VPSONLINE",
     "hosting": true,
     "proxy": false,
     "mobile": false
   },
   "185.220.101.7": {
     "country": "Germany",
-    "isp": "Tor Exit Relay",
-    "hosting": false,
+    "isp": "Stiftung Erneuerbare Freiheit",
+    "hosting": true,
     "proxy": true,
     "mobile": false
   },
   "45.83.64.12": {
-    "country": "Netherlands",
-    "isp": "M247 Ltd",
-    "hosting": true,
+    "country": "Germany",
+    "isp": "INTERNET-RESEARCH",
+    "hosting": false,
     "proxy": false,
     "mobile": false
   },
